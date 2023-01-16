@@ -1,0 +1,23 @@
+package variableTest;
+
+public class Variable {
+	
+	public static void main(String[] args) {
+		
+		int age = 10;
+		float interestRate = 3.55678F;
+		double compoundInterest = 3.55678;
+		char grade = 'A';
+		String data = "ABC";
+		// String 은 클래스 자료형
+		
+		System.out.println(age);
+		System.out.printf("%.2f\n",interestRate);
+		System.out.println(compoundInterest);
+		System.out.println(grade);
+		System.out.println(data);
+		
+		
+	}
+
+}
