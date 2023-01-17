@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 
-import sun.security.util.Length;
 
 public class HashSetTest {
 	
@@ -19,7 +18,6 @@ public class HashSetTest {
 		ArrayList<Integer> datas = new ArrayList<Integer>(Arrays.asList(10, 20, 20, 30, 30, 20, 50));
 		HashSet<Integer> dataSet = new HashSet<Integer>(datas);
 		datas = new ArrayList<Integer>(dataSet);
-		datas.stream()
 		System.out.println(datas);
 	}
 }
