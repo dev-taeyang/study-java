@@ -16,7 +16,7 @@ public class Test {
 //      삭제 메소드 사용
 //    salaryDAO.remove(3200);
 //      조회 메소드 사용
-      salaryDAO.checkSalary(3400);
-      System.out.println(salaryDAO.checkSalary(10000));
+//      salaryDAO.checkSalary(3400);
+      System.out.println(salaryDAO.checkSalary(3400));
    }
 }
