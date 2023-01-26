@@ -1,6 +1,6 @@
 package domain;
 
-public class UserVO {
+public class BoardDTO {
    private Long userId;
    private String userIdentification;
    private String userName;
@@ -12,9 +12,13 @@ public class UserVO {
    private String userBirth;
    private String userGender;
    private String userRecommenderId;
-   private Long recommendCount;
+   private Long boardId;
+   private String boardTitle;
+   private String boardContent;
+   private String boardRegisterDate;
+   private String boardUpdateDate;
    
-   public UserVO() {;}
+   public BoardDTO() {;}
 
    public Long getUserId() {
       return userId;
@@ -104,20 +108,82 @@ public class UserVO {
       this.userRecommenderId = userRecommenderId;
    }
 
-   public Long getRecommendCount() {
-      return recommendCount;
+   public Long getBoardId() {
+      return boardId;
    }
 
-   public void setRecommendCount(Long recommendCount) {
-      this.recommendCount = recommendCount;
+   public void setBoardId(Long boardId) {
+      this.boardId = boardId;
    }
 
+   public String getBoardTitle() {
+      return boardTitle;
+   }
+
+   public void setBoardTitle(String boardTitle) {
+      this.boardTitle = boardTitle;
+   }
+
+   public String getBoardContent() {
+      return boardContent;
+   }
+
+   public void setBoardContent(String boardContent) {
+      this.boardContent = boardContent;
+   }
+
+   public String getBoardRegisterDate() {
+      return boardRegisterDate;
+   }
+
+   public void setBoardRegisterDate(String boardRegisterDate) {
+      this.boardRegisterDate = boardRegisterDate;
+   }
+
+   public String getBoardUpdateDate() {
+      return boardUpdateDate;
+   }
+
+   public void setBoardUpdateDate(String boardUpdateDate) {
+      this.boardUpdateDate = boardUpdateDate;
+   }
+
+   public BoardVO toBoardVO() {
+      BoardVO boardVO = new BoardVO();
+      boardVO.setBoardId(this.boardId);
+      boardVO.setBoardTitle(this.boardTitle);
+      boardVO.setBoardContent(this.boardContent);
+      boardVO.setBoardRegisterDate(this.boardRegisterDate);
+      boardVO.setBoardUpdateDate(this.boardUpdateDate);
+      boardVO.setUserId(this.userId);
+      return boardVO;
+   }
+   
    @Override
    public String toString() {
-      return "UserVO [userId=" + userId + ", userIdentification=" + userIdentification + ", userName=" + userName
+      return "BoardDTO [userId=" + userId + ", userIdentification=" + userIdentification + ", userName=" + userName
             + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userNickname=" + userNickname
             + ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", userBirth=" + userBirth
-            + ", userGender=" + userGender + ", userRecommenderId=" + userRecommenderId + ", recommendCount="
-            + recommendCount + "]";
+            + ", userGender=" + userGender + ", userRecommenderId=" + userRecommenderId + ", boardId=" + boardId
+            + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardRegisterDate="
+            + boardRegisterDate + ", boardUpdateDate=" + boardUpdateDate + "]";
    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
