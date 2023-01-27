@@ -2,10 +2,9 @@ package collectionTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 
 public class StreamTest {
 	public boolean check(int number) {
@@ -14,11 +13,11 @@ public class StreamTest {
 	
 	public static void main(String[] args) {
 //		HashMap<String, Integer> chinaTown = new HashMap<String, Integer>();
-//		ArrayList<Integer> datas = new ArrayList<Integer>(Arrays.asList(10, 20, 30, 40, 50));
+		ArrayList<Integer> datas = new ArrayList<Integer>(Arrays.asList(10, 20, 30, 40, 50));
 //		
+//		chinaTown.put("탕수육", 14500);
 //		chinaTown.put("자장면", 4500);
 //		chinaTown.put("짬뽕", 6500);
-//		chinaTown.put("탕수육", 14500);
 		
 //		forEach()
 //		여러 값을 가지고 있는 컬렉션 객체에서 forEach 메소드를 사용할 수 있다.
@@ -26,6 +25,13 @@ public class StreamTest {
 //		Consumer는 함수형 인터페이스이기 때문에 람다식을 사용할 수 이씨다.
 //		매개변수에는 컬렉션 객체 안에 들어있는 값들이 순서대로 담기고,
 //		화살표 뒤에서는 실행하고 싶은 문장을 작성한다.
+//		ArrayList<String> data = new ArrayList<String>(chinaTown.entrySet());
+//		System.out.println();
+//		chinaTown.keySet().stream().map(v -> "메뉴" + v).sorted().forEach(System.out :: println);
+//		chinaTown.values().stream().map(v -> v).sorted().forEach(System.out :: println);
+		/*.stream().map(v ->v + 1000).sorted().forEach(System.out :: println);*/
+//		System.out.println(chinaTown.toString());
+		
 		
 //		chinaTown.values().stream().forEach(v -> System.out.println(v));
 //		chinaTown.values().forEach(v -> System.out.println(v));
@@ -33,9 +39,12 @@ public class StreamTest {
 		
 //		datas.forEach(data -> System.out.println(data));
 //		datas.forEach(System.out::println);
+		datas.stream().forEach(System.out::println);
 		
-//		IntStream.range(1, 10).forEach(v -> datas.add(v));
+//		IntStream.range(1, 10).forEach(datas);
 //		IntStream.range(1, 10).forEach(datas::add);
+//		IntStream.range(1, 10).forEach(v -> System.out.println(datas.get(v)));
+		
 		
 //		chars(): 문자열을 IntStream으로 변경
 //		String data = "ABC";
@@ -58,6 +67,7 @@ public class StreamTest {
 //		filter() : 조건식이 true일 경우만 추출
 //		StreamTest streamTest = new StreamTest();
 //		IntStream.rangeClosed(1, 10).filter(n -> n % 2 == 0).forEach(System.out::println);
+//		IntStream.rangeClosed(1, 10).filter(n -> n % 2 == 0).forEach(v -> System.out.println(v));
 //		IntStream.rangeClosed(1, 10).filter(n -> streamTest.check(n)).forEach(System.out::println);
 //		IntStream.rangeClosed(1, 10).filter(streamTest::check).forEach(System.out::println);
 		
