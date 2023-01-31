@@ -92,7 +92,10 @@ public class ReplyDAO {
             + "USER_GENDER, USER_RECOMMENDER_ID " 
             + "FROM (SELECT REPLY_GROUP, COUNT(REPLY_ID) - 1 REPLY_COUNT FROM TBL_REPLY GROUP BY REPLY_GROUP) R1 RIGHT OUTER JOIN VIEW_REPLY_USER R2 "
             + "ON R1.REPLY_GROUP = R2.REPLY_GROUP AND R1.REPLY_GROUP = R2.REPLY_ID";
-      
+      //TBL_REPLY 테이블을 REPLY_GROUP으로 묶어 그룹과 그 그룹들의 REPLY_ID(한 게시글에 적혀있는 그룹의 전체 댓글)의 수를 보여주는 TABLE을 R1이라고 설정
+      //COUNT(REPLY_ID) - 1 해준 이유는 REPLY_Group으로 group by를 했을때 현재 자신의 REPLY_ID까지 포함하여 Count하기 떄문에 -1을 해줘야함.
+      //유저정보와 댓글정보를 한테이블로 나타내주는 VIEW_REPLY_USER를 R2라고 두어 오른쪽의 테이블 정보를 다 나타내는 RIGHT OUTER JOIN을 함.
+      //그럼 한 게시글에 입력되어있는 댓글 및 대댓글의 모든 정보가 SELECT되어 보여줄 수 있음.
       ReplyDTO replyDTO = null;
       int index = 0;
       ArrayList<ReplyDTO> replies = new ArrayList<ReplyDTO>();

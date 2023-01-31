@@ -484,5 +484,107 @@ public class UserDAO {
 		}
 		return userVO;
 	}
+	
+//	팔로우 하기
+	public void insertFollow(UserVO userVO) {
+//		follower_id 나를 팔로우 하는 사람들. // User_iD 팔로우 한 아이디(로그인 했을 때 나를 팔로우 하는 사람들을 확인 하기 위해)
+		String query = "INSERT INTO TBL_FOLLOW "
+				+ "(FOLLOW_ID, FOLLOWER_ID, FOLLOW_DATE, USER_ID) "
+				+ "VALUES((SEQ_FOLLOW.NEXTVAL), ?, SYSDATE, ?)";
+		
+		connection = DBConnecter.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setLong(1, userVO.getUserId());
+			preparedStatement.setLong(2, UserDAO.userId);
+			preparedStatement.executeUpdate();
 
+		} catch (SQLException e) {
+			System.out.println("insertFollow(UserVO userVO) SQL문 오류");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		
+	}
+	
+//	팔로우 조회
+
+	public ArrayList<UserVO> findFollow() {
+		
+		String query = "SELECT F.USER_ID, F.FOLLOW_ID, F.FOLLOW_DATE, F.FOLLOWER_ID, U.USER_IDENTIFICATION , "
+				+ "U.USER_NAME ,U.USER_PHONE ,U.USER_NICKNAME ,U.USER_EMAIL , U.USER_ADDRESS , U.USER_BIRTH , U.USER_GENDER "
+				+ "FROM TBL_FOLLOW F RIGHT JOIN TBL_USER U "
+				+ "ON F.USER_ID = U.USER_ID AND F.USER_ID = ?";
+		ArrayList<UserVO> users = new ArrayList<UserVO>();
+		UserVO userVO = null;
+		int index = 0;
+		connection = DBConnecter.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setLong(1, UserDAO.userId);
+//         그중 id를 받아와서 ?값에 넣어준다.
+
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) { // 한행씩 읽어 주며 값들을 userVO객체에 담아줌. // while문 이기때문에 더이상 값이 없을 때까지 읽어와서 입력해줌
+				index = 0;
+				userVO = new UserVO();
+				userVO.setUserId(resultSet.getLong(++index));
+				userVO.setFollowId(resultSet.getLong(++index));
+				userVO.setFollowDate(resultSet.getString(++index));
+				userVO.setFollowerId(resultSet.getLong(++index));
+				userVO.setUserIdentification(resultSet.getString(++index));
+				userVO.setUserName(resultSet.getString(++index));
+				userVO.setUserPhone(resultSet.getString(++index));
+				userVO.setUserNickname(resultSet.getString(++index));
+				userVO.setUserEmail(resultSet.getString(++index));
+				userVO.setUserAddress(resultSet.getString(++index));
+				userVO.setUserBirth(resultSet.getString(++index));
+				userVO.setUserGender(resultSet.getString(++index));
+				users.add(userVO); // users라는 UserVO타입의 ArrayList에 add해준다
+			}
+
+		} catch (SQLException e) {
+			System.out.println("ArrayList<UserVO> findFollow() SQL문 오류");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return users;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
