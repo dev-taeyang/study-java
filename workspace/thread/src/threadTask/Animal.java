@@ -8,9 +8,12 @@ public class Animal{
 		Thread[] threads = new Thread[sounds.length];	// 자원을 사용할 쓰레드들을 배열로 사운드 배열의 개수만큼 선언
 		
 //		각 쓰레드에 동일한 자원에 접근하도록 설정하고, 각 이름을 울음소리로 설정한다.
-		for (int i = 0; i < threads.length; i++) {
-			threads[i] = new Thread(animal, sounds[i]);	// 쓰레드 배열의 i번째방에 animal을 타겟으로 두고 name을 sounds[i]방으로 설정.
-		}
+//		for (int i = 0; i < threads.length; i++) {
+//			threads[i] = new Thread(animal, sounds[i]);	// 쓰레드 배열의 i번째방에 animal을 타겟으로 두고 name을 sounds[i]방으로 설정.
+//		}
+		threads[0]= new Thread(animal, sounds[0]);
+		threads[1]= new Thread(animal, sounds[1]);
+		threads[2]= new Thread(animal, sounds[2]);
 		
 		for (int i = 0; i < threads.length; i++) {
 //			각 쓰레드를 스케줄링 한 뒤 2개의 쓰레드가 동시에 start 되고, 마지막 쓰레드만 join을 통해 멈춰준다.

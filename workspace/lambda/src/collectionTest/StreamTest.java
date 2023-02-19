@@ -3,7 +3,9 @@ package collectionTest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 
 
 public class StreamTest {
@@ -18,20 +20,31 @@ public class StreamTest {
 //		chinaTown.put("탕수육", 14500);
 //		chinaTown.put("자장면", 4500);
 //		chinaTown.put("짬뽕", 6500);
+		HashMap<String, Integer> chinaTown = new HashMap<String, Integer>();
+		chinaTown.put("탕수육", 13000);
+		chinaTown.put("짜장면", 5000);
+		chinaTown.put("짬뽕", 8000);
 		
+		chinaTown.keySet().stream().map(v -> "메뉴:" + v).forEach(System.out :: println);
+		chinaTown.values().stream().map(v-> "가격:" + v).forEach(System.out::println);
 //		forEach()
 //		여러 값을 가지고 있는 컬렉션 객체에서 forEach 메소드를 사용할 수 있다.
 //		forEach() 메소드에는 Consumer 인터페이스 타입의 값을 전달해야 한다.
 //		Consumer는 함수형 인터페이스이기 때문에 람다식을 사용할 수 이씨다.
 //		매개변수에는 컬렉션 객체 안에 들어있는 값들이 순서대로 담기고,
 //		화살표 뒤에서는 실행하고 싶은 문장을 작성한다.
-//		ArrayList<String> data = new ArrayList<String>(chinaTown.entrySet());
+		chinaTown.entrySet().stream().map(v -> v).forEach(System.out::println);
+		
 //		System.out.println();
 //		chinaTown.keySet().stream().map(v -> "메뉴" + v).sorted().forEach(System.out :: println);
 //		chinaTown.values().stream().map(v -> v).sorted().forEach(System.out :: println);
 		/*.stream().map(v ->v + 1000).sorted().forEach(System.out :: println);*/
 //		System.out.println(chinaTown.toString());
-		
+		System.out.println(chinaTown.toString());
+		IntStream.range(1, 10).forEach(data -> System.out.println(data));
+		IntStream.range(1, 10).forEach(datas::add);
+		IntStream.range(1, 10).forEach(v->System.out.println(datas));
+		IntStream.range(0, 14).forEach(v -> System.out.println(datas.get(v)));
 		
 //		chinaTown.values().stream().forEach(v -> System.out.println(v));
 //		chinaTown.values().forEach(v -> System.out.println(v));
@@ -39,12 +52,13 @@ public class StreamTest {
 		
 //		datas.forEach(data -> System.out.println(data));
 //		datas.forEach(System.out::println);
-		datas.stream().forEach(System.out::println);
+//		datas.stream().forEach(System.out::println);
 		
 //		IntStream.range(1, 10).forEach(datas);
 //		IntStream.range(1, 10).forEach(datas::add);
 //		IntStream.range(1, 10).forEach(v -> System.out.println(datas.get(v)));
-		
+		String data = "ABC";
+		data.chars().map(c -> c+3).forEach(v-> System.out.println((char)v));
 		
 //		chars(): 문자열을 IntStream으로 변경
 //		String data = "ABC";
@@ -79,11 +93,11 @@ public class StreamTest {
 //		datas.stream().sorted(Collections.reverseOrder()).forEach(System.out::println);
 		
 //		collect() : 결과를 다양한 타입으로 리턴해준다.
-//		ArrayList<Integer> datas = new ArrayList<Integer>(Arrays.asList(10, 40, 23, 32, 50));
-//		ArrayList<Integer> results = 
-//			(ArrayList<Integer>)datas.stream().sorted().collect(Collectors.toList());
-//		
-//		System.out.println(results);
+		ArrayList<Integer> datass = new ArrayList<Integer>(Arrays.asList(10, 40, 23, 32, 50));
+		ArrayList<Integer> results = 
+			(ArrayList<Integer>)datass.stream().sorted().collect(Collectors.toList());
+		
+		System.out.println(results);
 		
 //		ArrayList<Integer> times = new ArrayList<Integer>(Arrays.asList(10, 3, 2));
 //		String result = times.stream().map(String::valueOf).collect(Collectors.joining(":"));

@@ -1,5 +1,6 @@
 package threadTask;
 
+
 public class Zoo {
 	
 	public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class Zoo {
 			}
 		};
 		
+
 //		구현된 animal 객체를 makeSounds에 전달
 		new Animal().makeSounds(animal);
 	}

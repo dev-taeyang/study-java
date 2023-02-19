@@ -46,8 +46,7 @@ public class ReplyDAO {
          } catch (SQLException e) {
             throw new RuntimeException(e);
          }
-      }
-      
+      }  
    }
    
 //   ´ñ±Û Ãß°¡

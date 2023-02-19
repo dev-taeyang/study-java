@@ -186,7 +186,6 @@ public class UserDAO {
 	public String findIdentification(String userPhone) { // 아이디 찾을떄 userPhone을 입력하여 바로 찾기.
 		String query = "SELECT USER_IDENTIFICATION FROM TBL_USER WHERE USER_PHONE = ?";
 		String userIdentification = null;
-
 		connection = DBConnecter.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(query); //
@@ -265,7 +264,8 @@ public class UserDAO {
 			preparedStatement.setString(2, userVO.getUserGender());
 			preparedStatement.setString(3, userVO.getUserBirth());
 			preparedStatement.setLong(4, userId); // userId는 로그인시 static으로 저장해놓은 userId임
-
+			
+			
 			preparedStatement.executeUpdate(); // 수행
 
 		} catch (SQLException e) {
@@ -300,6 +300,13 @@ public class UserDAO {
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) { // 불러온 값들을 resultSet에 저장한후 저장된 각각의 값들을 userVO객체에 set해줌
+				/*
+				 * 
+					useriD= 3
+					USERIDENTIFICATION = JAEHUYN123
+					PASSWOERD = SKDFAJSDK
+					
+				 */
 				userVO = new UserVO();
 				userVO.setUserId(resultSet.getLong(1));
 				userVO.setUserIdentification(resultSet.getString(2));
@@ -392,7 +399,6 @@ public class UserDAO {
 //         그중 id를 받아와서 ?값에 넣어준다.
 
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) { // 한행씩 읽어 주며 값들을 userVO객체에 담아줌. // while문 이기때문에 더이상 값이 없을 때까지 읽어와서 입력해줌
 				userVO = new UserVO();
 				userVO.setUserId(resultSet.getLong(1));
@@ -461,7 +467,6 @@ public class UserDAO {
 				userVO.setUserGender(resultSet.getString(10));
 				userVO.setUserRecommenderId(resultSet.getString(11));
 			}
-
 		} catch (SQLException e) {
 			System.out.println("getMyRecommender() SQL문 오류");
 			e.printStackTrace();
